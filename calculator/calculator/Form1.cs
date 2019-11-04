@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Text;
 using System.Windows.Forms;
@@ -22,13 +22,14 @@ namespace calculator
                 textBox2.ForeColor = System.Drawing.Color.Silver;
                 try
                 {
-                    string result = Identify('0'+textBox1.Text);
+                    string temp = textBox1.Text;
+                    string result = Identify('0'+temp.Replace("(-", "(0-"));
                     result = getResult(result);
                     textBox2.Text = result;
                 }
                 catch //(Exception ex)
                 {
-                    
+                    //textBox2.Text = "错误";
                 }
                 
             }
@@ -57,15 +58,14 @@ namespace calculator
             textBox2.ForeColor = System.Drawing.SystemColors.ControlText;
             try
             {
-                string result = Identify('0'+textBox1.Text);
+                string temp = textBox1.Text;
+                string result = Identify('0' + temp.Replace("(-", "(0-"));
                 result = getResult(result);
                 textBox2.Text = result;
             }
             catch //(Exception ex)
             {
                 textBox2.Text = "错误";
-                //MessageBox.Show("输入不合法,请重新输入!");
-                //textBox1.Text = textBox2.Text = string.Empty;
             }
         }
         private int Priority(char c)
